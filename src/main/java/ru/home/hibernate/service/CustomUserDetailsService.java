@@ -20,12 +20,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         UserEntity userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UnauthorizedErrorException("User not found"));
 
-        UserDetails userDetails = User.builder()
-                .username(userEntity.getUsername())
-                .password(userEntity.getPassword())
-                .roles(userEntity.getRole())
-                .build();
+//        UserDetails userDetails = User.builder()
+//                .username(userEntity.getUsername())
+//                .password(userEntity.getPassword())
+//                .roles(userEntity.getRole())
+//                .build();
 
-        return userDetails;
+        return userEntity;
     }
 }

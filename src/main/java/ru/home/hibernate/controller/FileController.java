@@ -27,7 +27,7 @@ public class FileController {
     }
 
     @PostMapping("/file")
-    public ResponseEntity<?> uploadFile(@RequestHeader("auth-token") String token,
+    public ResponseEntity<?> uploadFile(@RequestHeader("Auth-token") String token,
                                         @RequestParam("filename") String filename,
                                         @RequestBody MultipartFile file) throws IOException {
 

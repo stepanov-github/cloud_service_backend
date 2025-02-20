@@ -96,7 +96,7 @@ public class FileService {
 
         List<FileEntity> files = fileRepository.getFiles(limit);
 
-        if (files.isEmpty()) {throw new InternalServerErrorException("File list is empty");}
+//        if (files.isEmpty()) {throw new InternalServerErrorException("File list is empty");}
 
         return files.stream().map(file -> new FileResponse(file.getFilename(), file.getFileContent().length)).collect(Collectors.toList());
 

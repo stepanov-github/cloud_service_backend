@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 INSERT INTO users (username, password, role)
-VALUES ('admin', '$2a$12$mtWeu3YPK5gu0al3dg5xvu3SzJksXRossV4jTQzQ.nLJvSLxquPrC', 'admin')
-ON CONFLICT (username) DO UPDATE SET username = 'admin';
+VALUES ('admin@mail.ru', '$2a$12$mtWeu3YPK5gu0al3dg5xvu3SzJksXRossV4jTQzQ.nLJvSLxquPrC', 'admin')
+ON CONFLICT (username) DO UPDATE SET username = 'admin@mail';
 
 INSERT INTO users (username, password, role)
 VALUES ('user', '$2a$12$BuCXCtFnHqWkdKIVlyuSdO1WO3oNZ0arMWB7jQ5tdC1BNyQ7NAL2.', 'user')

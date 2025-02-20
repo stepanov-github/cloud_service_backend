@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface FileRepository extends JpaRepository<FileEntity, String> {
+
     @Modifying
     @Transactional
     @Query("UPDATE FileEntity f set f.filename = :newFilename WHERE f.filename = :filename")
