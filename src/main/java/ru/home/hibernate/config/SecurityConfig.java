@@ -36,9 +36,9 @@ public class SecurityConfig {
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/cloud/login").permitAll()
-                        .requestMatchers("/cloud/list").hasAnyRole("ADMIN", "USER")
+//                        .requestMatchers("/cloud/list").hasAnyRole("ADMIN", "USER")
 //                        .requestMatchers("/cloud/file").hasRole("ADMIN")
-                        .requestMatchers("/cloud/file").authenticated()
+//                        .requestMatchers("/cloud/file").authenticated()
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
