@@ -21,10 +21,6 @@ import java.util.List;
 public class FileController {
     private FileService fileService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "The test was successful";
-    }
 
     @PostMapping("/file")
     public ResponseEntity<?> uploadFile(@RequestHeader("Auth-token") String token,
@@ -46,6 +42,7 @@ public class FileController {
         return ResponseEntity.ok(HttpStatus.OK);
 
     }
+
     @GetMapping("/file")
     public ResponseEntity<?> downloadFile(@RequestHeader("auth-token") String token,
                                           @RequestParam("filename") String fileName) {
@@ -55,6 +52,7 @@ public class FileController {
         return ResponseEntity.ok().body(new ByteArrayResource(file));
 
     }
+
     @PutMapping("/file")
     public ResponseEntity<?> editFileName(@RequestHeader("auth-token") String token,
                                           @RequestParam("filename") String filename,
@@ -67,6 +65,7 @@ public class FileController {
         return ResponseEntity.ok(HttpStatus.OK);
 
     }
+
     @GetMapping("/list")
     public ResponseEntity<List<FileResponse>> getAllFiles(@RequestHeader("auth-token") String token,
                                                           @RequestParam(name = "limit") int limit) {

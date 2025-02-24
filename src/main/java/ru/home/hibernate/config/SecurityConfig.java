@@ -19,6 +19,7 @@ import ru.home.hibernate.jwt.JwtAuthenticationEntryPoint;
 import ru.home.hibernate.jwt.JwtTokenFilter;
 import ru.home.hibernate.service.CustomUserDetailsService;
 
+import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @AllArgsConstructor
@@ -34,10 +35,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .cors(withDefaults())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/cloud/login").permitAll()
-//                        .requestMatchers("/cloud/list").hasAnyRole("ADMIN", "USER")
-//                        .requestMatchers("/cloud/file").hasRole("ADMIN")
+//                        .requestMatchers("/cloud/file").permitAll()
+//                        .requestMatchers("/cloud/list").permitAll()
+//                        .requestMatchers("/cloud/list").hasAnyRole("admin", "user")
+//                        .requestMatchers("/cloud/file").hasRole("admin")
 //                        .requestMatchers("/cloud/file").authenticated()
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(jwtAuthenticationEntryPoint))
