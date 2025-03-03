@@ -22,7 +22,7 @@ public class FileService {
     private FileRepository fileRepository;
     private final InMemoryBlackListToken tokenBlacklist;
 
-    public void uploadFile(String token, String filename, MultipartFile file) throws IOException {
+    public boolean uploadFile(String token, String filename, MultipartFile file) {
 
         checkToken(token);
 
@@ -32,13 +32,14 @@ public class FileService {
 
         try {
             fileRepository.save(new FileEntity(filename, file.getBytes()));
+            return true;
         } catch (Exception e) {
             throw new InternalServerErrorException("Error upload file");
         }
 
     }
 
-    public void deleteFile(String token, String filename) {
+    public boolean deleteFile(String token, String filename) {
 
         checkToken(token);
 
@@ -48,6 +49,7 @@ public class FileService {
 
         try {
             fileRepository.deleteById(filename);
+            return true;
         } catch (RuntimeException e) {
             throw new InternalServerErrorException("Error delete file");
         }
@@ -66,13 +68,15 @@ public class FileService {
 
         FileEntity fileEntity = file.get();
 
-        if (fileEntity == null) {throw new InternalServerErrorException("Error upload file");}
+        if (fileEntity == null) {
+            throw new InternalServerErrorException("Error upload file");
+        }
 
         return fileEntity.getFileContent();
 
     }
 
-    public void editFileName(String token, String filename, String newFilename) {
+    public boolean editFileName(String token, String filename, String newFilename) {
 
         checkToken(token);
 
@@ -82,7 +86,10 @@ public class FileService {
 
         int updatedRows = fileRepository.editFileName(filename, newFilename);
 
-        if (updatedRows == 0) {throw new InternalServerErrorException("Error upload file");}
+        if (updatedRows == 0) {
+            throw new InternalServerErrorException("Error upload file");
+        }
+        return true;
 
     }
 
@@ -90,7 +97,7 @@ public class FileService {
 
         checkToken(token);
 
-        if (limit==0) {
+        if (limit == 0) {
             throw new BadRequestException("Please enter limit files");
         }
 
