@@ -1,4 +1,4 @@
-﻿# Дипломная работа "Облачное хранилище"
+# Дипломная работа "Облачное хранилище"
 
 ## Описание проекта:
 
@@ -29,7 +29,7 @@
 
 ## Запуск BACKEND:
 
-- Выполнив в терминале команду: ./mvnw clean package, мы получим архив CloudApplication-0.0.1-SNAPSHOT.jar в .\target;
+- Выполнив в терминале команду: ./mvnw clean package, мы получим архив Hibernate-0.0.1-SNAPSHOT.jar в .\target;
 - Выполнить команду по сборке images и containers: docker-compose up -d, в докере запустятся 2 приложения:
   backend-cloudapp на порту: 8081 и database-postgres-dev2 на порту: 5432
 
