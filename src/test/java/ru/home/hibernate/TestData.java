@@ -16,8 +16,6 @@ public class TestData {
     public static final String TOKEN_1 = "Token1";
     public static final String TOKEN_2 = "Token2";
     public static final String BEARER_TOKEN = "Bearer Token";
-    public static final String BEARER_TOKEN_SPLIT = BEARER_TOKEN.split(" ")[1];
-    public static final String BEARER_TOKEN_SUBSTRING_7 = BEARER_TOKEN.substring(7);
 
 
     public static final String USERNAME_1 = "Username1";
@@ -41,8 +39,8 @@ public class TestData {
     public static final List<FileEntity> FILE_LIST = List.of(FILE_1,FILE_2);
     public static final int LIMIT_FILES = 100;
     public static final int LIMIT_BAD = 0;
-    public static final FileResponse FILE_RESPONSE_1 = new FileResponse(FILE_1);
-    public static final FileResponse FILE_RESPONSE_2 = new FileResponse(FILE_2);
+    public static final FileResponse FILE_RESPONSE_1 = new FileResponse(FILE_1.getFilename(),FILE_1.getFileContent().length);
+    public static final FileResponse FILE_RESPONSE_2 = new FileResponse(FILE_2.getFilename(),FILE_2.getFileContent().length);
     public static final List<FileResponse> FILE_RESPONSE_LIST = List.of(FILE_RESPONSE_1,FILE_RESPONSE_2);
 
 

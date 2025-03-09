@@ -1,6 +1,5 @@
 package ru.home.hibernate.controller;
 
-import lombok.AllArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +16,12 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/cloud")
-@AllArgsConstructor
 public class FileController {
     private FileService fileService;
 
+    public FileController(FileService fileService) {
+        this.fileService = fileService;
+    }
 
     @PostMapping("/file")
     public ResponseEntity<?> uploadFile(@RequestHeader("Auth-token") String token,
@@ -34,8 +35,8 @@ public class FileController {
     }
 
     @DeleteMapping("/file")
-    public ResponseEntity<?> deleteFile(@RequestHeader("auth-token")  String token,
-                                        @RequestParam("filename")  String filename) {
+    public ResponseEntity<?> deleteFile(@RequestHeader("auth-token") String token,
+                                        @RequestParam("filename") String filename) {
 
         fileService.deleteFile(token, filename);
 

@@ -1,6 +1,5 @@
 package ru.home.hibernate.service;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.home.hibernate.dto.response.FileResponse;
@@ -10,17 +9,20 @@ import ru.home.hibernate.exception.InternalServerErrorException;
 import ru.home.hibernate.exception.UnauthorizedErrorException;
 import ru.home.hibernate.repositiry.FileRepository;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class FileService {
 
     private FileRepository fileRepository;
     private final InMemoryBlackListToken tokenBlacklist;
+
+    public FileService(InMemoryBlackListToken tokenBlacklist, FileRepository fileRepository) {
+        this.tokenBlacklist = tokenBlacklist;
+        this.fileRepository = fileRepository;
+    }
 
     public boolean uploadFile(String token, String filename, MultipartFile file) {
 

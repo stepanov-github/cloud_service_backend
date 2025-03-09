@@ -17,6 +17,7 @@ public class ExceptionHandlerController {
     public ErrorResponse badRequestException(BadRequestException exception) {
         return new ErrorResponse(exception.getMessage(), 400);
     }
+
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnauthorizedErrorException.class)
     public ErrorResponse unauthorizedErrorException(UnauthorizedErrorException exception) {

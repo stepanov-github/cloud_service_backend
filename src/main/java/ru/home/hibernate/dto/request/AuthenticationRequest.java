@@ -2,13 +2,9 @@ package ru.home.hibernate.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class AuthenticationRequest {
 
     @JsonProperty("login")
@@ -17,4 +13,21 @@ public class AuthenticationRequest {
 
     @NotBlank
     private String password;
+
+    public AuthenticationRequest() {
+    }
+
+    public AuthenticationRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public @NotBlank String getUsername() {
+        return username;
+    }
+
+    public @NotBlank String getPassword() {
+        return password;
+    }
 }
+

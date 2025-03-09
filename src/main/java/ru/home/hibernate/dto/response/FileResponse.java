@@ -1,18 +1,30 @@
 package ru.home.hibernate.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ru.home.hibernate.entity.FileEntity;
-
-@Data
-//@NoArgsConstructor
-@AllArgsConstructor
 public class FileResponse {
     private String filename;
     private int size;
-    public FileResponse(FileEntity fileEntity) {
-        this.filename = fileEntity.getFilename();
-        this.size = fileEntity.getFileContent().length;
+
+    public FileResponse() {
+    }
+
+    public FileResponse(String filename, int size) {
+        this.filename = filename;
+        this.size = size;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }

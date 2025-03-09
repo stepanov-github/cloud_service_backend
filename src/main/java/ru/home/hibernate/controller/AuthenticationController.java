@@ -1,6 +1,5 @@
 package ru.home.hibernate.controller;
 
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -10,11 +9,14 @@ import ru.home.hibernate.dto.response.AuthenticationResponse;
 import ru.home.hibernate.service.AuthenticationService;
 
 @Validated
-@AllArgsConstructor
 @RestController
 @RequestMapping("/cloud")
 public class AuthenticationController {
     private AuthenticationService authenticationService;
+
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody AuthenticationRequest Request) {

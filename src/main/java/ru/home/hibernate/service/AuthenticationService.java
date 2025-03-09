@@ -1,6 +1,5 @@
 package ru.home.hibernate.service;
 
-import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,13 +9,19 @@ import ru.home.hibernate.dto.response.AuthenticationResponse;
 import ru.home.hibernate.jwt.JwtService;
 
 @Service
-@AllArgsConstructor
 public class AuthenticationService {
 
     private final CustomUserDetailsService UserDetailsService;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final InMemoryBlackListToken tokenBlacklist;
+
+    public AuthenticationService(CustomUserDetailsService userDetailsService, JwtService jwtService, AuthenticationManager authenticationManager, InMemoryBlackListToken tokenBlacklist) {
+        UserDetailsService = userDetailsService;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+        this.tokenBlacklist = tokenBlacklist;
+    }
 
     public AuthenticationResponse login(AuthenticationRequest request) {
 
